@@ -5,52 +5,45 @@ import (
 	"fmt"
 	"time"
 
-	// "blog.velotio.com/crd-blog/v1alpha1"
-	"github.com/enixdark/kubernetes-programming-deepdive/CustomResourceDefinition/v1alpha1"
+	"github.com/golang/glog"
+	"github.com/enixdark/kubernetes-programming-deepdive/CustomResourceDefinition/pkg/apis/app/v1alpha1"
 	apiextension "k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset"
 	meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
-	clientcmdapi "k8s.io/client-go/tools/clientcmd/api"
+	// clientcmdapi "k8s.io/client-go/tools/clientcmd/api"
 )
 
 var (
 	// Set during build
 	version string
-
+	kubeconfig string
 	proxyURL = flag.String("proxy", "",
 		`If specified, it is assumed that a kubctl proxy server is running on the
 		given url and creates a proxy client. In case it is not given InCluster
 		kubernetes setup will be used`)
 )
 
-func main() {
+func init() {
+	flag.StringVar(&kubeconfig, "kubeconfig", "", "path to Kubernetes config file")
 	flag.Parse()
+}
+
+func main() {
 
 	var err error
 
 	var config *rest.Config
 
-	if *proxyURL != "" {
-		config, err = clientcmd.NewNonInteractiveDeferredLoadingClientConfig(
-			&clientcmd.ClientConfigLoadingRules{},
-			&clientcmd.ConfigOverrides{
-				ClusterInfo: clientcmdapi.Cluster{
-					Server: *proxyURL,
-				},
-			},
-		).ClientConfig()
-
-		if err != nil {
-			glog.Fatalf("error creating client configuration: %v", err)
-		}
+	if kubeconfig == "" {
+		fmt.Printf("using in-cluster configuration")
+		config, err = rest.InClusterConfig()
 	} else {
-		if config, err = rest.InClusterConfig(); err != nil {
-			glog.Fatalf("error creating client configuration: %v", err)
-		}
+		fmt.Printf("using configuration from '%s'", kubeconfig)
+		config, err = clientcmd.BuildConfigFromFlags("", kubeconfig)
 	}
-
-	kubeClient, err := apiextension.NewForConfig(config)
+	 
+	kubeclient, err := apiextension.NewForConfig(config)
 	if err != nil {
 		glog.Fatalf("Failed to create client: %v", err)
 	}
@@ -70,8 +63,9 @@ func main() {
 
 	SslConfig := &v1alpha1.SslConfig{
 		ObjectMeta: meta_v1.ObjectMeta{
-			Name: "sslconfigobj",
-			Labels: map[string]string{"mylabel": "test"},
+			Name:   "sslconfigobj",
+			Labels: map[string]string{"mylabel": "crd"},
+			GenerateName: "sslconfigobj",
 		},
 		Spec: v1alpha1.SslConfigSpec{
 			Cert: "my-cert",
