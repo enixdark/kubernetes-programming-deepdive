@@ -1,6 +1,6 @@
 package controller
 
 const (
-	GroupName string = "foo.com" 
+	GroupName = "foo.com" 
 )
 

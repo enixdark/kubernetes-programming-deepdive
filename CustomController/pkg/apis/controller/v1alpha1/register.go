@@ -5,7 +5,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	controller "github/enixdark/kubernetes-programming-deepdive/CustomController/pkg/apis/controller"
+	controller "github.com/enixdark/kubernetes-programming-deepdive/CustomController/pkg/apis/controller"
 )
 
 // SchemeGroupVersion is group version used to register these objects
@@ -17,8 +17,8 @@ func Kind(kind string) schema.GroupKind {
 }
 
 // Resource takes an unqualified resource and returns a Group qualified GroupResource
-func Resource(resource string) scheme.GroupResource {
-	return SchemeGroupVersion.withResource(resource).GroupResource()
+func Resource(resource string) schema.GroupResource {
+	return SchemeGroupVersion.WithResource(resource).GroupResource()
 }
 
 var (

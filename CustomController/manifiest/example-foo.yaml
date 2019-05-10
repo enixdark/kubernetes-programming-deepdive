@@ -1,0 +1,7 @@
+apiVersion: foos.foo.com/v1alpha1
+kind: Foo
+metadata:
+  name: foos.foo.com
+spec:
+  deploymentName: foos.foo.com
+  replicas: 1

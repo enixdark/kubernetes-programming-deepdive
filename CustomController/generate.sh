@@ -16,8 +16,8 @@ docker build -f "${GEN_DIR}/Dockerfile.code-generate" \
              "${REPO_DIR}"
 
 cmd="./generate-groups.sh all \
-    "$PROJECT_MODULE/pkg/client" \
-    "$PROJECT_MODULE/pkg/apis" \
+    $PROJECT_MODULE/pkg/client \
+    $PROJECT_MODULE/pkg/apis \
     $CUSTOM_RESOURCE_NAME:$CUSTOM_RESOURCE_VERSION"
 
 echo "Generating client codes..."
