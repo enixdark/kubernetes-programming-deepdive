@@ -22,11 +22,11 @@ import (
 	"k8s.io/client-go/util/workqueue"
 	"k8s.io/klog"
 
-	samplev1alpha1 "github.com/enixdark/kubernetes-programming-deepdive/Sample-controller/pkg/apis/samplecontroller/v1alpha1"
-	clientset "github.com/enixdark/kubernetes-programming-deepdive/Sample-controller/pkg/client/clientset/versioned"
-	samplescheme "github.com/enixdark/kubernetes-programming-deepdive/Sample-controller/pkg/client/clientset/versioned/scheme"
-	informers "github.com/enixdark/kubernetes-programming-deepdive/Sample-controller/pkg/client/informers/externalversions/samplecontroller/v1alpha1"
-	listers "github.com/enixdark/kubernetes-programming-deepdive/Sample-controller/pkg/client/listers/samplecontroller/v1alpha1"
+	samplev1alpha1 "github.com/enixdark/kubernetes-programming-deepdive/SampleController/pkg/apis/samplecontroller/v1alpha1"
+	clientset "github.com/enixdark/kubernetes-programming-deepdive/SampleController/pkg/client/clientset/versioned"
+	samplescheme "github.com/enixdark/kubernetes-programming-deepdive/SampleController/pkg/client/clientset/versioned/scheme"
+	informers "github.com/enixdark/kubernetes-programming-deepdive/SampleController/pkg/client/informers/externalversions/samplecontroller/v1alpha1"
+	listers "github.com/enixdark/kubernetes-programming-deepdive/SampleController/pkg/client/listers/samplecontroller/v1alpha1"
 
 )
 

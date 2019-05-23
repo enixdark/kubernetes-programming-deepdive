@@ -11,9 +11,9 @@ import (
 	// Uncomment the following line to load the gcp plugin (only required to authenticate against GKE clusters).
 	// _ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 
-	clientset "github.com/enixdark/kubernetes-programming-deepdive/Sample-controller/pkg/client/clientset/versioned"
-	informers "github.com/enixdark/kubernetes-programming-deepdive/Sample-controller/pkg/client/informers/externalversions"
-	"github.com/enixdark/kubernetes-programming-deepdive/Sample-controller/pkg/signals"
+	clientset "github.com/enixdark/kubernetes-programming-deepdive/SampleController/pkg/client/clientset/versioned"
+	informers "github.com/enixdark/kubernetes-programming-deepdive/SampleController/pkg/client/informers/externalversions"
+	"github.com/enixdark/kubernetes-programming-deepdive/SampleController/pkg/signals"
 )
 
 var (
