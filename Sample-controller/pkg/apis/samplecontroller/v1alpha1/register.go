@@ -5,7 +5,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	samplecontroller "enixdark/kubernetes-programming-deepdive/Sample-controller/pkg/apis/samplecontroller"
+	samplecontroller "github.com/enixdark/kubernetes-programming-deepdive/Sample-controller/pkg/apis/samplecontroller"
 )
 
 
